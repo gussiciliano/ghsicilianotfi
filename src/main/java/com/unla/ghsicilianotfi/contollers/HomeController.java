@@ -28,10 +28,14 @@ public class HomeController {
 	}
 	
 	@PostMapping("/newdegree")
-	public ModelAndView newdegree(@ModelAttribute("degree") Degree degree) {
+	public ModelAndView newdegree(@Valid @ModelAttribute("degree") Degree degree, BindingResult bindingResult) {
 		ModelAndView mV = new ModelAndView();
-		mV.setViewName(ViewRouteHelper.NEW_DEGREE);
-		mV.addObject("degree", degree);
+		if (bindingResult.hasErrors()) {
+			mV.setViewName(ViewRouteHelper.DEGREE);
+		} else {
+			mV.setViewName(ViewRouteHelper.NEW_DEGREE);
+			mV.addObject("degree", degree);
+		}
 		return mV;
 	}
 	
@@ -63,18 +67,3 @@ public class HomeController {
 	}
 }
 
-
-
-
-
-/*@PostMapping("/newdegree")
-	public ModelAndView newdegree(@Valid @ModelAttribute("degree") Degree degree, BindingResult bindingResult) {
-		ModelAndView mV = new ModelAndView();
-		if (bindingResult.hasErrors()) {
-			mV.setViewName(ViewRouteHelper.DEGREE);
-		} else {
-			mV.setViewName(ViewRouteHelper.NEW_DEGREE);
-			mV.addObject("degree", degree);
-		}
-		return mV;
-	}*/

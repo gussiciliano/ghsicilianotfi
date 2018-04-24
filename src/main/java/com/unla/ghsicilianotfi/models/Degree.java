@@ -1,8 +1,15 @@
 package com.unla.ghsicilianotfi.models;
 
+import javax.validation.constraints.Min;
+import javax.validation.constraints.Size;
+
 public class Degree {
 	private String name;
+	
+	@Size(min=3, max=12)
 	private String institution;
+	
+	@Min(3)
 	private String year;
 	
 	public Degree() {}
