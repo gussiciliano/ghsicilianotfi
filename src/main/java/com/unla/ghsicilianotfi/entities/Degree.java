@@ -23,8 +23,8 @@ public class Degree {
 	@Column(name="name")
 	private String name;
 
-	@Column(name="description")
-	private String description;
+	@Column(name="institution")
+	private String institution;
 	
 	@Column(name="year")
 	private double year;
@@ -42,10 +42,10 @@ public class Degree {
 
 	public Degree() {}
 	
-	public Degree(int id, String name, String description, double year, int hours, GregorianCalendar createdAt, GregorianCalendar updatedAt) {
+	public Degree(int id, String name, String institution, double year, int hours, GregorianCalendar createdAt, GregorianCalendar updatedAt) {
 		this.id = id;
 		this.name = name;
-		this.description = description;
+		this.institution = institution;
 		this.year = year;
 		this.hours = hours;
 		this.createdAt = createdAt;
@@ -68,12 +68,12 @@ public class Degree {
 		this.name = name;
 	}
 
-	public String getDescription() {
-		return description;
+	public String getInstitution() {
+		return institution;
 	}
 
-	public void setDescription(String description) {
-		this.description = description;
+	public void setIinstitution(String institution) {
+		this.institution = institution;
 	}
 
 	public double getYear() {

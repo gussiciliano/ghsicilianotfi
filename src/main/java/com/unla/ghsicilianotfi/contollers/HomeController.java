@@ -15,7 +15,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 
 import com.unla.ghsicilianotfi.helpers.ViewRouteHelper;
-import com.unla.ghsicilianotfi.models.Degree;
+import com.unla.ghsicilianotfi.models.DegreeModel;
 
 @Controller
 @RequestMapping("/")
@@ -23,12 +23,12 @@ public class HomeController {
 
 	@GetMapping("/degree")
 	public String degree(Model model) {
-		model.addAttribute("degree", new Degree());
+		model.addAttribute("degree", new DegreeModel());
 		return ViewRouteHelper.DEGREE;
 	}
 	
 	@PostMapping("/newdegree")
-	public ModelAndView newdegree(@Valid @ModelAttribute("degree") Degree degree, BindingResult bindingResult) {
+	public ModelAndView newdegree(@Valid @ModelAttribute("degree") DegreeModel degree, BindingResult bindingResult) {
 		ModelAndView mV = new ModelAndView();
 		if (bindingResult.hasErrors()) {
 			mV.setViewName(ViewRouteHelper.DEGREE);

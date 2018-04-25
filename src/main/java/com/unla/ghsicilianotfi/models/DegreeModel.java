@@ -3,7 +3,7 @@ package com.unla.ghsicilianotfi.models;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.Size;
 
-public class Degree {
+public class DegreeModel {
 	private String name;
 	
 	@Size(min=3, max=12)
@@ -12,9 +12,9 @@ public class Degree {
 	@Min(3)
 	private String year;
 	
-	public Degree() {}
+	public DegreeModel() {}
 	
-	public Degree(String name, String institution, String year) {
+	public DegreeModel(String name, String institution, String year) {
 		this.name = name;
 		this.institution = institution;
 		this.year = year;
