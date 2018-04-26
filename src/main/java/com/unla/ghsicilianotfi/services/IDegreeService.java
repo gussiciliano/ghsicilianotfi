@@ -13,3 +13,4 @@ public interface IDegreeService {
 	
 	public boolean remove(int id);
 }
+

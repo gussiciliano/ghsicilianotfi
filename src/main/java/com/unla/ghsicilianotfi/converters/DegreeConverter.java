@@ -16,3 +16,4 @@ public class DegreeConverter {
 		return new Degree(degreeModel.getId(), degreeModel.getName(), degreeModel.getInstitution(), degreeModel.getYear());
 	}
 }
+

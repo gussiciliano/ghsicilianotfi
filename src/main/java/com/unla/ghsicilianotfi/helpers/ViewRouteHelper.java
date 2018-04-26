@@ -12,6 +12,6 @@ public class ViewRouteHelper {
 	
 	//Redirects
 	public final static String ROUTE_INDEX = "/index";
-	public final static String ROOT = "/";
+	public final static String DEGREE_ROOT = "/degrees/";
 }
 

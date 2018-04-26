@@ -30,7 +30,8 @@ public class DegreeService implements IDegreeService {
 
 	@Override
 	public DegreeModel insertOrUpdate(DegreeModel degreeModel) {
-		return degreeConverter.entityToModel(degreeRepository.save(degreeConverter.modelToEntity(degreeModel)));
+		Degree degree = degreeRepository.save(degreeConverter.modelToEntity(degreeModel));
+		return degreeConverter.entityToModel(degree);
 	}
 
 	@Override

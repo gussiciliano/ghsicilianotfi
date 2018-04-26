@@ -33,6 +33,7 @@ public class DegreeController {
 	@PostMapping("/")
 	public RedirectView create(@ModelAttribute("degree") DegreeModel degreeModel) {
 		degreeService.insertOrUpdate(degreeModel);
-		return new RedirectView(ViewRouteHelper.ROOT);
+		return new RedirectView(ViewRouteHelper.DEGREE_ROOT);
 	}
 }
+
