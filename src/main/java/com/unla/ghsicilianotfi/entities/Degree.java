@@ -27,10 +27,7 @@ public class Degree {
 	private String institution;
 	
 	@Column(name="year")
-	private double year;
-	
-	@Column(name="hours")
-	private int hours;
+	private int year;
 	
 	@Column(name="createdat")
 	@CreationTimestamp
@@ -42,14 +39,11 @@ public class Degree {
 
 	public Degree() {}
 	
-	public Degree(int id, String name, String institution, double year, int hours, GregorianCalendar createdAt, GregorianCalendar updatedAt) {
+	public Degree(int id, String name, String institution, int year) {
 		this.id = id;
 		this.name = name;
 		this.institution = institution;
 		this.year = year;
-		this.hours = hours;
-		this.createdAt = createdAt;
-		this.updatedAt = updatedAt;
 	}
 
 	public int getId() {
@@ -76,20 +70,12 @@ public class Degree {
 		this.institution = institution;
 	}
 
-	public double getYear() {
+	public int getYear() {
 		return year;
 	}
 
-	public void setYear(double year) {
+	public void setYear(int year) {
 		this.year = year;
-	}
-
-	public int getHours() {
-		return hours;
-	}
-
-	public void setHours(int hours) {
-		this.hours = hours;
 	}
 
 	public GregorianCalendar getCreatedAt() {
