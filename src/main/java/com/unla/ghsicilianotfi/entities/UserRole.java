@@ -4,31 +4,33 @@ import java.util.GregorianCalendar;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 @Entity
-@Table(name="degree")
-public class Degree {
+@Table(name="user_role", uniqueConstraints=@UniqueConstraint(columnNames= {"role", "user_id"}))
+public class UserRole {
 
 	@Id
 	@GeneratedValue
 	@Column(name="id")
 	private int id;
 	
-	@Column(name="name")
-	private String name;
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name="user_id", nullable=false)
+	private User user;
+	
+	@Column(name="role", nullable=false, length=100)
+	private String role;
 
-	@Column(name="institution")
-	private String institution;
-	
-	@Column(name="year")
-	private int year;
-	
 	@Column(name="createdat")
 	@CreationTimestamp
 	private GregorianCalendar createdAt;
@@ -37,19 +39,12 @@ public class Degree {
 	@UpdateTimestamp
 	private GregorianCalendar updatedAt;
 
-	public Degree() {}
+	public UserRole() {}
 	
-	public Degree(int id, String name, String institution, int year) {
+	public UserRole(int id, User user, String role) {
 		this.id = id;
-		this.name = name;
-		this.institution = institution;
-		this.year = year;
-	}
-	
-	public Degree(String name, String institution, int year) {
-		this.name = name;
-		this.institution = institution;
-		this.year = year;
+		this.user = user;
+		this.role = role;
 	}
 
 	public int getId() {
@@ -60,28 +55,20 @@ public class Degree {
 		this.id = id;
 	}
 
-	public String getName() {
-		return name;
+	public User getUser() {
+		return user;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setUser(User user) {
+		this.user = user;
 	}
 
-	public String getInstitution() {
-		return institution;
+	public String getRole() {
+		return role;
 	}
 
-	public void setIinstitution(String institution) {
-		this.institution = institution;
-	}
-
-	public int getYear() {
-		return year;
-	}
-
-	public void setYear(int year) {
-		this.year = year;
+	public void setRole(String role) {
+		this.role = role;
 	}
 
 	public GregorianCalendar getCreatedAt() {

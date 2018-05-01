@@ -63,7 +63,6 @@ public class HomeController {
 	
 	@GetMapping("/")
 	public RedirectView redirectToHomeIndex() {
-		return new RedirectView(ViewRouteHelper.ROUTE_INDEX);
+		return new RedirectView(ViewRouteHelper.ROUTE);
 	}
 }
-
