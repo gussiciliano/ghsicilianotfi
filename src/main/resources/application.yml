@@ -11,3 +11,5 @@ spring:
         strategy: org.hibernate.cfg.ImprovedNaming.Strategy
     properties:
       dialect: org.hibernate.dialect.MySQL5Dialect
+  thymeleaf:
+    cache: false
