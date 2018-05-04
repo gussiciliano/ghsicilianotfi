@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<title>UNLa</title>
+		<!-- Bootstrap core CSS -->
+		<link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+		<link href="/css/modern-business.css" rel="stylesheet" />
+	</head>
+	<body>
+	    <!-- Page Content -->
+	    <div class="container">
+	      <div class="jumbotron">
+	        <h1 class="display-5">Login</h1>
+	        <form th:action="@{/loginprocess}" method="post">
+		      	<input type="text" name="username" id="username" placeholder="Username" />
+		      	<input type="password" name="password" id="password" placeholder="Password" />
+		      	<input type="submit" />
+	      	</form>
+	      	<div th:if="${error != null}" class="alert alert-danger">
+		    	Invalid username or password.
+		    </div>
+	      </div>
+	    </div>
+	    <!-- Bootstrap core JavaScript -->
+	    <script src="/vendor/jquery/jquery.min.js"></script>
+	    <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+	</body>
+</html>

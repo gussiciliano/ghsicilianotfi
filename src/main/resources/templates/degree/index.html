@@ -1,0 +1,22 @@
+<table>
+	<thead>
+		<tr>
+			<th>Name</th>
+			<th>Institution</th>
+			<th>Year</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr th:each="degree : ${degrees}">
+			<td><span th:text="${degree.name}" /></td>
+			<td><span th:text="${degree.institution}" /></td>
+			<td><span th:text="${degree.year}" /></td>
+		</tr>
+	</tbody>
+</table>
+<form action="#" th:action="@{/degrees/}" th:object="${degree}" method="post">
+	<p>Name: <input type="text" th:field="*{name}" /></p>
+	<p>Institution: <input type="text" th:field="*{institution}" /></p>
+	<p>Year: <input type="number" th:field="*{year}" /></p>
+	<input type="submit" />
+</form>
