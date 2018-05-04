@@ -1,0 +1,6 @@
+mv ../jppereztfi/target/classes/META-INF/maven/com.unla/jppereztfi ../jppereztfi/target/classes/META-INF/maven/com.unla/"$1"
+mv ../jppereztfi/target/classes/com/unla/jppereztfi ../jppereztfi/target/classes/com/unla/"$1"
+mv ../jppereztfi/target/test-classes/com/unla/jppereztfi ../jppereztfi/target/test-classes/com/unla/"$1"
+mv ../jppereztfi/src/main/java/com/unla/jppereztfi ../jppereztfi/src/main/java/com/unla/"$1"
+mv ../jppereztfi/src/test/java/com/unla/jppereztfi ../jppereztfi/src/test/java/com/unla/"$1"
+mv ../jppereztfi ../"$1"
