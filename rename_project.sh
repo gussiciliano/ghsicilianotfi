@@ -1,6 +1,3 @@
-mv ../ghsicilianotfi/target/classes/META-INF/maven/com.unla/ghsicilianotfi ../ghsicilianotfi/target/classes/META-INF/maven/com.unla/"$1"
-mv ../ghsicilianotfi/target/classes/com/unla/ghsicilianotfi ../ghsicilianotfi/target/classes/com/unla/"$1"
-mv ../ghsicilianotfi/target/test-classes/com/unla/ghsicilianotfi ../ghsicilianotfi/target/test-classes/com/unla/"$1"
 mv ../ghsicilianotfi/src/main/java/com/unla/ghsicilianotfi ../ghsicilianotfi/src/main/java/com/unla/"$1"
 mv ../ghsicilianotfi/src/test/java/com/unla/ghsicilianotfi ../ghsicilianotfi/src/test/java/com/unla/"$1"
 mv ../ghsicilianotfi ../"$1"
