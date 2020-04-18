@@ -1,6 +1,6 @@
 package com.unla.ghsicilianotfi.entities;
 
-import java.util.GregorianCalendar;
+import java.time.LocalDateTime;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -31,11 +31,11 @@ public class Degree {
 	
 	@Column(name="createdat")
 	@CreationTimestamp
-	private GregorianCalendar createdAt;
+	private LocalDateTime createdAt;
 	
 	@Column(name="updatedat")
 	@UpdateTimestamp
-	private GregorianCalendar updatedAt;
+	private LocalDateTime updatedAt;
 
 	public Degree() {}
 	
@@ -84,19 +84,19 @@ public class Degree {
 		this.year = year;
 	}
 
-	public GregorianCalendar getCreatedAt() {
+	public LocalDateTime getCreatedAt() {
 		return createdAt;
 	}
 
-	public void setCreatedAt(GregorianCalendar createdAt) {
+	public void setCreatedAt(LocalDateTime createdAt) {
 		this.createdAt = createdAt;
 	}
 
-	public GregorianCalendar getUpdatedAt() {
+	public LocalDateTime getUpdatedAt() {
 		return updatedAt;
 	}
 
-	public void setUpdatedAt(GregorianCalendar updatedAt) {
+	public void setUpdatedAt(LocalDateTime updatedAt) {
 		this.updatedAt = updatedAt;
 	}
 }

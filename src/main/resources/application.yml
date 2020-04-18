@@ -2,13 +2,11 @@ spring:
   datasource:
     url: jdbc:mysql://localhost:3306/ghsicilianotfi
     username: root
-    password: root
+    password: root12345678
   jpa:
     show-sql: true
     hibernate:
       ddl-auto: update
-      naming:
-        strategy: org.hibernate.cfg.ImprovedNaming.Strategy
     properties:
       dialect: org.hibernate.dialect.MySQL5Dialect
   thymeleaf:

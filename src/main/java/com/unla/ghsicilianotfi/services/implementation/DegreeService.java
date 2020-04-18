@@ -37,7 +37,7 @@ public class DegreeService implements IDegreeService {
 	@Override
 	public boolean remove(int id) {
 		try {
-			degreeRepository.delete(id);
+			degreeRepository.deleteById(id);
 			return true;
 		}catch (Exception e) {
 			return false;

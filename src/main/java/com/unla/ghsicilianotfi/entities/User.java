@@ -1,5 +1,6 @@
 package com.unla.ghsicilianotfi.entities;
 
+import java.time.LocalDateTime;
 import java.util.GregorianCalendar;
 import java.util.HashSet;
 import java.util.Set;
@@ -35,11 +36,11 @@ public class User {
 	
 	@Column(name="createdat")
 	@CreationTimestamp
-	private GregorianCalendar createdAt;
+	private LocalDateTime createdAt;
 	
 	@Column(name="updatedat")
 	@UpdateTimestamp
-	private GregorianCalendar updatedAt;
+	private LocalDateTime updatedAt;
 	
 	@OneToMany(fetch=FetchType.LAZY, mappedBy="user")
 	private Set<UserRole> userRoles = new HashSet<UserRole>();
@@ -91,19 +92,19 @@ public class User {
 		this.enabled = enabled;
 	}
 
-	public GregorianCalendar getCreatedAt() {
+	public LocalDateTime getCreatedAt() {
 		return createdAt;
 	}
 
-	public void setCreatedAt(GregorianCalendar createdAt) {
+	public void setCreatedAt(LocalDateTime createdAt) {
 		this.createdAt = createdAt;
 	}
 
-	public GregorianCalendar getUpdatedAt() {
+	public LocalDateTime getUpdatedAt() {
 		return updatedAt;
 	}
 
-	public void setUpdatedAt(GregorianCalendar updatedAt) {
+	public void setUpdatedAt(LocalDateTime updatedAt) {
 		this.updatedAt = updatedAt;
 	}
 
