@@ -1,0 +1,12 @@
+<form action="#" th:action="@{/person/update}" th:object="${person}"
+	method="post">
+	<input type="hidden" th:field="*{id}" />
+	</p>
+	<p>
+		Name: <input type="text" th:field="*{name}" />
+	</p>
+	<input type="submit" value="Edit" />
+</form>
+<form action="#" th:action="@{/person/delete/{id}(id=${person.id})}" method="post">
+	<input type="submit" value="delete person" />
+</form>

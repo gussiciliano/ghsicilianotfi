@@ -2,54 +2,35 @@ package com.unla.ghsicilianotfi.entities;
 
 import java.time.LocalDateTime;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 @Entity
-@Table(name="degree")
-public class Degree {
+public class Person {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
-	@Column(name="name")
 	private String name;
 
-	@Column(name="institution")
-	private String institution;
-	
-	@Column(name="year")
-	private int year;
-	
-	@Column(name="createdat")
 	@CreationTimestamp
 	private LocalDateTime createdAt;
 	
-	@Column(name="updatedat")
 	@UpdateTimestamp
 	private LocalDateTime updatedAt;
 
-	public Degree() {}
+	public Person() {}
 	
-	public Degree(int id, String name, String institution, int year) {
+	public Person(int id, String name) {
 		this.id = id;
 		this.name = name;
-		this.institution = institution;
-		this.year = year;
 	}
 	
-	public Degree(String name, String institution, int year) {
+	public Person(String name) {
 		this.name = name;
-		this.institution = institution;
-		this.year = year;
 	}
 
 	public int getId() {
@@ -66,22 +47,6 @@ public class Degree {
 
 	public void setName(String name) {
 		this.name = name;
-	}
-
-	public String getInstitution() {
-		return institution;
-	}
-
-	public void setIinstitution(String institution) {
-		this.institution = institution;
-	}
-
-	public int getYear() {
-		return year;
-	}
-
-	public void setYear(int year) {
-		this.year = year;
 	}
 
 	public LocalDateTime getCreatedAt() {
