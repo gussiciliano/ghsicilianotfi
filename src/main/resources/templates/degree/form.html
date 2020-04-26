@@ -1,4 +1,4 @@
-<form action="#" th:action="@{newdegree}" th:object="${degree}" method="post">
+<form action="#" th:action="@{new}" th:object="${degree}" method="post">
 	<p> Name: <input type="text" th:field="*{name}" /></p>
 	<p> Institution: <input type="text" th:field="*{institution}" /></p>
 	<p th:if="${#fields.hasErrors('institution')}" th:errors="*{institution}">Institution has errors</p>

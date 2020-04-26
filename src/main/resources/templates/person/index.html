@@ -1,0 +1,17 @@
+<table>
+	<thead>
+		<tr>
+			<th>Name</th>
+			<th>View</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr th:each="person : ${persons}">
+			<td><span th:text="${person.name}" /></td>
+			<td>
+				<a th:href="@{/person/{id}(id=${person.id})}">View</a>
+			</td>
+		</tr>
+	</tbody>
+</table>
+<a href="/person/new">Create new person</a>
