@@ -1,4 +1,5 @@
 package com.unla.ghsicilianotfi.services.implementation;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -52,5 +53,14 @@ public class PersonService implements IPersonService {
 	@Override
 	public PersonModel findByName(String name) {
 		return personConverter.entityToModel(personRepository.findByName(name));
+	}
+	
+	@Override
+	public List<PersonModel> findByDegreeName(String degreeName) {
+		List<PersonModel> models = new ArrayList<PersonModel>();
+		for (Person person : personRepository.findByDegreeName(degreeName)) {
+			models.add(personConverter.entityToModel(person));
+		}
+		return models;
 	}
 }

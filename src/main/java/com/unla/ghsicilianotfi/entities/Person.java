@@ -1,6 +1,8 @@
 package com.unla.ghsicilianotfi.entities;
 
 import java.time.LocalDateTime;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.*;
 
@@ -22,6 +24,9 @@ public class Person {
 	@UpdateTimestamp
 	private LocalDateTime updatedAt;
 
+	@OneToMany(fetch=FetchType.LAZY, mappedBy="person")
+	private Set<Degree> degrees = new HashSet<Degree>();
+	
 	public Person() {}
 	
 	public Person(int id, String name) {

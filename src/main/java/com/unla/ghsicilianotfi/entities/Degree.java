@@ -4,9 +4,12 @@ import java.time.LocalDateTime;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.CreationTimestamp;
@@ -28,6 +31,11 @@ public class Degree {
 	
 	@Column(name="year")
 	private int year;
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+	// normalmente nullable es igual a false, en este caso se deja como true porque el ejemplo es simple
+	@JoinColumn(name="person_id", nullable=true)
+	private Person person;
 	
 	@Column(name="createdat")
 	@CreationTimestamp
@@ -98,5 +106,13 @@ public class Degree {
 
 	public void setUpdatedAt(LocalDateTime updatedAt) {
 		this.updatedAt = updatedAt;
+	}
+
+	public Person getPerson() {
+		return person;
+	}
+
+	public void setPerson(Person person) {
+		this.person = person;
 	}
 }

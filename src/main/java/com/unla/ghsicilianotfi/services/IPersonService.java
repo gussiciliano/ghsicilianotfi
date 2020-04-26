@@ -16,5 +16,7 @@ public interface IPersonService {
 	public PersonModel insertOrUpdate(PersonModel personModel);
 	
 	public boolean remove(int id);
+	
+	public List<PersonModel> findByDegreeName(String degreeName);
 }
 
