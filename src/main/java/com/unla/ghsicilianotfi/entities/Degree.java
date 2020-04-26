@@ -33,6 +33,7 @@ public class Degree {
 	private int year;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
+	// normalmente nullable es igual a false, en este caso se deja como true porque el ejemplo es simple
 	@JoinColumn(name="person_id", nullable=true)
 	private Person person;
 	
