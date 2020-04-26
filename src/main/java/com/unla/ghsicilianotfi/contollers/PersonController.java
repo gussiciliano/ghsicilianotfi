@@ -27,7 +27,6 @@ public class PersonController {
 	public ModelAndView index() {
 		ModelAndView mAV = new ModelAndView(ViewRouteHelper.PERSON_INDEX);
 		mAV.addObject("persons", personService.getAll());
-		mAV.addObject("person", new PersonModel());
 		return mAV;
 	}
 	
@@ -55,6 +54,13 @@ public class PersonController {
 	public ModelAndView getByName(@PathVariable("name") String name) {
 		ModelAndView mAV = new ModelAndView(ViewRouteHelper.PERSON_UPDATE);
 		mAV.addObject("person", personService.findByName(name));
+		return mAV;
+	}
+	
+	@GetMapping("/by_degree/{degree_name}")
+	public ModelAndView getByDegreeName(@PathVariable("degree_name") String degreeName) {
+		ModelAndView mAV = new ModelAndView(ViewRouteHelper.PERSON_INDEX);
+		mAV.addObject("persons", personService.findByDegreeName(degreeName));
 		return mAV;
 	}
 	
