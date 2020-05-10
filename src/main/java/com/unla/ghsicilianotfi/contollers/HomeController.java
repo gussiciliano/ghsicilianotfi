@@ -1,5 +1,7 @@
 package com.unla.ghsicilianotfi.contollers;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
@@ -11,10 +13,15 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 
 import com.unla.ghsicilianotfi.helpers.ViewRouteHelper;
+import com.unla.ghsicilianotfi.services.IPersonService;
 
 @Controller
 @RequestMapping("/")
 public class HomeController {
+	
+	@Autowired
+	@Qualifier("personService")
+	private IPersonService personService;
 	
 	//GET Example: SERVER/index
 	@GetMapping("/index")
@@ -22,6 +29,7 @@ public class HomeController {
 		ModelAndView modelAndView = new ModelAndView(ViewRouteHelper.INDEX);
 		User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		modelAndView.addObject("username", user.getUsername());
+		modelAndView.addObject("persons", personService.getAll());
 		return modelAndView;
 	}
 	

@@ -15,6 +15,7 @@ public class ViewRouteHelper {
 	public final static String PERSON_INDEX = "person/index";
 	public final static String PERSON_NEW = "person/new";
 	public final static String PERSON_UPDATE = "person/update";
+	public final static String PERSON_PARTIAL_VIEW = "person/partialPersonView";
 	
 	//USER
 	public final static String USER_LOGIN = "user/login";

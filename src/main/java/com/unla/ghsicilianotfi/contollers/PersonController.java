@@ -50,6 +50,13 @@ public class PersonController {
 		return mAV;
 	}
 	
+	@GetMapping("/partial/{id}")
+	public ModelAndView getPartial(@PathVariable("id") int id) {
+		ModelAndView mAV = new ModelAndView(ViewRouteHelper.PERSON_PARTIAL_VIEW);
+		mAV.addObject("person", personService.findById(id));
+		return mAV;
+	}
+	
 	@GetMapping("/by_name/{name}")
 	public ModelAndView getByName(@PathVariable("name") String name) {
 		ModelAndView mAV = new ModelAndView(ViewRouteHelper.PERSON_UPDATE);

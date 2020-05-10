@@ -1,0 +1,11 @@
+<div class="col-lg-4 mb-4">
+	<div class="card h-100" th:object="${person}">
+		<h4 class="card-header" th:text="${person.name}" />
+		<div class="card-body">
+			<p class="card-text">Detailes about this person</p>
+		</div>
+		<div class="card-footer">
+			<a class="btn btn-primary" th:href="@{/person/{id}(id=${person.id})}">View</a>
+		</div>
+	</div>
+</div>
