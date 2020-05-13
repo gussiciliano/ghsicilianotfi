@@ -9,11 +9,11 @@ import com.unla.ghsicilianotfi.models.PersonModel;
 public class PersonConverter {
 
 	public PersonModel entityToModel(Person person) {
-		return new PersonModel(person.getId(), person.getName());
+		return new PersonModel(person.getId(), person.getName(), person.getBirthdate());
 	}
 
 	public Person modelToEntity(PersonModel personModel) {
-		return new Person(personModel.getId(), personModel.getName());
+		return new Person(personModel.getId(), personModel.getName(), personModel.getBirthdate());
 	}
 }
 

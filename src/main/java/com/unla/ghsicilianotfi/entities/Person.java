@@ -1,5 +1,6 @@
 package com.unla.ghsicilianotfi.entities;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Set;
@@ -18,6 +19,8 @@ public class Person {
 	private int id;
 	
 	private String name;
+	
+	private LocalDate birthdate;
 
 	@CreationTimestamp
 	private LocalDateTime createdAt;
@@ -30,9 +33,10 @@ public class Person {
 	
 	public Person() {}
 	
-	public Person(int id, String name) {
+	public Person(int id, String name, LocalDate birthdate) {
 		this.id = id;
 		this.name = name;
+		this.birthdate = birthdate;
 	}
 	
 	public Person(String name) {
@@ -69,5 +73,13 @@ public class Person {
 
 	public void setUpdatedAt(LocalDateTime updatedAt) {
 		this.updatedAt = updatedAt;
+	}
+
+	public LocalDate getBirthdate() {
+		return birthdate;
+	}
+
+	public void setBirthdate(LocalDate birthdate) {
+		this.birthdate = birthdate;
 	}
 }
