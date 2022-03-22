@@ -15,7 +15,12 @@ import javax.persistence.Table;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 @Entity
+@Getter @Setter @NoArgsConstructor
 @Table(name="degree")
 public class Degree {
 
@@ -45,8 +50,6 @@ public class Degree {
 	@UpdateTimestamp
 	private LocalDateTime updatedAt;
 
-	public Degree() {}
-	
 	public Degree(int id, String name, String institution, int year) {
 		this.id = id;
 		this.name = name;
@@ -58,61 +61,5 @@ public class Degree {
 		this.name = name;
 		this.institution = institution;
 		this.year = year;
-	}
-
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public String getInstitution() {
-		return institution;
-	}
-
-	public void setIinstitution(String institution) {
-		this.institution = institution;
-	}
-
-	public int getYear() {
-		return year;
-	}
-
-	public void setYear(int year) {
-		this.year = year;
-	}
-
-	public LocalDateTime getCreatedAt() {
-		return createdAt;
-	}
-
-	public void setCreatedAt(LocalDateTime createdAt) {
-		this.createdAt = createdAt;
-	}
-
-	public LocalDateTime getUpdatedAt() {
-		return updatedAt;
-	}
-
-	public void setUpdatedAt(LocalDateTime updatedAt) {
-		this.updatedAt = updatedAt;
-	}
-
-	public Person getPerson() {
-		return person;
-	}
-
-	public void setPerson(Person person) {
-		this.person = person;
 	}
 }
