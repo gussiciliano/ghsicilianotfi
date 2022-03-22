@@ -2,6 +2,9 @@
 
 BOOTSTRAP PARA APRENDIZAJE DE PROYECTOS EN JAVA SPRING
 
+[Documentación versión 2022 - Spring Boot 2.6.4 + Lombok + ModelMapper](https://drive.google.com/file/d/1D_KgYmJ1DpbzrqO6-M5NgyqlLHkIayoS/view)
+Info de los cambios en la página 87 sección "Mejoras y actualizaciones importantes". 
+
 [Documentación versión 2021 - Spring Boot 2.4.5](https://drive.google.com/file/d/1j2eSstW6NL15ScoZwcX9iQHTSsPf-IDH/view)
 
 [Documentación versión 2020 - Spring Boot 2.2.6](https://drive.google.com/open?id=19jxnlmAU3-NSXgdEj4gbuVsU732-qPed)
