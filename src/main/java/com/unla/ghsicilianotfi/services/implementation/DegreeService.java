@@ -1,11 +1,11 @@
 package com.unla.ghsicilianotfi.services.implementation;
 import java.util.List;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
-import com.unla.ghsicilianotfi.converters.DegreeConverter;
 import com.unla.ghsicilianotfi.entities.Degree;
 import com.unla.ghsicilianotfi.models.DegreeModel;
 import com.unla.ghsicilianotfi.repositories.IDegreeRepository;
@@ -19,9 +19,7 @@ public class DegreeService implements IDegreeService {
 	@Qualifier("degreeRepository")
 	private IDegreeRepository degreeRepository;
 	
-	@Autowired
-	@Qualifier("degreeConverter")
-	private DegreeConverter degreeConverter;
+	private ModelMapper modelMapper = new ModelMapper();
 	
 	@Override
 	public List<Degree> getAll() {
@@ -30,8 +28,8 @@ public class DegreeService implements IDegreeService {
 
 	@Override
 	public DegreeModel insertOrUpdate(DegreeModel degreeModel) {
-		Degree degree = degreeRepository.save(degreeConverter.modelToEntity(degreeModel));
-		return degreeConverter.entityToModel(degree);
+		Degree degree = degreeRepository.save(modelMapper.map(degreeModel, Degree.class));
+		return modelMapper.map(degree, DegreeModel.class);
 	}
 
 	@Override

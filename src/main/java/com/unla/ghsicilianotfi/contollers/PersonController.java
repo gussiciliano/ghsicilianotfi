@@ -1,5 +1,6 @@
 package com.unla.ghsicilianotfi.contollers;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 
+import com.unla.ghsicilianotfi.entities.Person;
 import com.unla.ghsicilianotfi.helpers.ViewRouteHelper;
 import com.unla.ghsicilianotfi.models.PersonModel;
 import com.unla.ghsicilianotfi.services.IPersonService;
@@ -22,6 +24,8 @@ public class PersonController {
 	@Autowired
 	@Qualifier("personService")
 	private IPersonService personService;
+	
+	private ModelMapper modelMapper = new ModelMapper();
 	
 	@GetMapping("")
 	public ModelAndView index() {
@@ -39,7 +43,7 @@ public class PersonController {
 	
 	@PostMapping("/create")
 	public RedirectView create(@ModelAttribute("person") PersonModel personModel) {
-		personService.insertOrUpdate(personModel);
+		personService.insertOrUpdate(modelMapper.map(personModel, Person.class));
 		return new RedirectView(ViewRouteHelper.PERSON_ROOT);
 	}
 	
@@ -73,7 +77,13 @@ public class PersonController {
 	
 	@PostMapping("/update")
 	public RedirectView update(@ModelAttribute("person") PersonModel personModel) {
-		personService.insertOrUpdate(personModel);
+		Person person = modelMapper.map(personModel, Person.class);
+		if(personModel.getId() > 0) {
+			Person personOld = personService.findById(personModel.getId());
+			person.setBirthdate(personOld.getBirthdate());
+			person.setCreatedAt(personOld.getCreatedAt());
+		}
+		personService.insertOrUpdate(person);
 		return new RedirectView(ViewRouteHelper.PERSON_ROOT);
 	}
 	
