@@ -9,11 +9,11 @@ public interface IPersonService {
 
 	public List<Person> getAll();
 	
-	public PersonModel findById(int id);
+	public Person findById(int id);
 	
 	public PersonModel findByName(String name);
 	
-	public PersonModel insertOrUpdate(PersonModel personModel);
+	public PersonModel insertOrUpdate(Person person);
 	
 	public boolean remove(int id);
 	

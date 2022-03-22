@@ -2,11 +2,11 @@ package com.unla.ghsicilianotfi.services.implementation;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
-import com.unla.ghsicilianotfi.converters.PersonConverter;
 import com.unla.ghsicilianotfi.entities.Person;
 import com.unla.ghsicilianotfi.models.PersonModel;
 import com.unla.ghsicilianotfi.repositories.IPersonRepository;
@@ -20,9 +20,7 @@ public class PersonService implements IPersonService {
 	@Qualifier("personRepository")
 	private IPersonRepository personRepository;
 	
-	@Autowired
-	@Qualifier("personConverter")
-	private PersonConverter personConverter;
+	private ModelMapper modelMapper = new ModelMapper();
 	
 	@Override
 	public List<Person> getAll() {
@@ -30,9 +28,9 @@ public class PersonService implements IPersonService {
 	}
 
 	@Override
-	public PersonModel insertOrUpdate(PersonModel personModel) {
-		Person person = personRepository.save(personConverter.modelToEntity(personModel));
-		return personConverter.entityToModel(person);
+	public PersonModel insertOrUpdate(Person person) {
+		Person personNew = personRepository.save(person);
+		return modelMapper.map(personNew, PersonModel.class);
 	}
 
 	@Override
@@ -46,20 +44,20 @@ public class PersonService implements IPersonService {
 	}
 
 	@Override
-	public PersonModel findById(int id) {
-		return personConverter.entityToModel(personRepository.findById(id));
+	public Person findById(int id) {
+		return personRepository.findById(id);
 	}
 
 	@Override
 	public PersonModel findByName(String name) {
-		return personConverter.entityToModel(personRepository.findByName(name));
+		return modelMapper.map(personRepository.findByName(name), PersonModel.class);
 	}
 	
 	@Override
 	public List<PersonModel> findByDegreeName(String degreeName) {
 		List<PersonModel> models = new ArrayList<PersonModel>();
 		for (Person person : personRepository.findByDegreeName(degreeName)) {
-			models.add(personConverter.entityToModel(person));
+			models.add(modelMapper.map(person, PersonModel.class));
 		}
 		return models;
 	}
