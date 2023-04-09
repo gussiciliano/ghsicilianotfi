@@ -21,12 +21,12 @@ public class SecurityConfiguration {
 	@Autowired
 	@Qualifier("userService")
 	private UserService userService;
-	
+
 	@Autowired
 	public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
 		auth.userDetailsService(userService).passwordEncoder(new BCryptPasswordEncoder());
 	}
-	
+
 	@Bean
 	public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 		http.authorizeHttpRequests()
@@ -41,9 +41,9 @@ public class SecurityConfiguration {
 				.logout().logoutUrl("/logout").logoutSuccessUrl("/logout").permitAll();
 		return http.build();
 	}
-	
+
 	/* No usado en este ejemplo
-	@Bean 
+	@Bean
     public WebSecurityCustomizer webSecurityCustomizer() {
         return (web) -> web.ignoring().requestMatchers("/images/**", "/js/**", "/webjars/**");
     }*/

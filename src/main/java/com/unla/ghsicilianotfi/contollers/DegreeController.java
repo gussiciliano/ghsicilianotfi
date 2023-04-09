@@ -1,7 +1,5 @@
 package com.unla.ghsicilianotfi.contollers;
 
-import jakarta.validation.Valid;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -19,6 +17,8 @@ import com.unla.ghsicilianotfi.helpers.ViewRouteHelper;
 import com.unla.ghsicilianotfi.models.DegreeModel;
 import com.unla.ghsicilianotfi.services.IDegreeService;
 
+import jakarta.validation.Valid;
+
 @Controller
 @PreAuthorize("hasRole('ROLE_ADMIN')")
 @RequestMapping("/degrees")
@@ -27,7 +27,7 @@ public class DegreeController {
 	@Autowired
 	@Qualifier("degreeService")
 	private IDegreeService degreeService;
-	
+
 	@GetMapping("/")
 	public ModelAndView index() {
 		ModelAndView mAV = new ModelAndView(ViewRouteHelper.DEGREE_INDEX);
@@ -35,19 +35,19 @@ public class DegreeController {
 		mAV.addObject("degree", new DegreeModel());
 		return mAV;
 	}
-	
+
 	@PostMapping("/")
 	public RedirectView create(@ModelAttribute("degree") DegreeModel degreeModel) {
 		degreeService.insertOrUpdate(degreeModel);
 		return new RedirectView(ViewRouteHelper.DEGREE_ROOT);
 	}
-	
+
 	@GetMapping("/form")
 	public String degree(Model model) {
 		model.addAttribute("degree", new DegreeModel());
 		return ViewRouteHelper.DEGREE_FORM;
 	}
-	
+
 	@PostMapping("/new")
 	public ModelAndView newdegree(@Valid @ModelAttribute("degree") DegreeModel degree, BindingResult bindingResult) {
 		ModelAndView mV = new ModelAndView();

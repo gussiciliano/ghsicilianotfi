@@ -17,9 +17,9 @@ public class DegreeRestController {
 
 	@GetMapping("/all")
 	public ResponseEntity<List<DegreeModel>> allDegrees() {
-		List<DegreeModel> degrees = new ArrayList<DegreeModel>();
+		List<DegreeModel> degrees = new ArrayList<>();
 		degrees.add(new DegreeModel(1, "Lic. Sistemas", "UNLa", 2018));
 		degrees.add(new DegreeModel(2, "Lic. Turismo", "UNLa", 2018));
-		return new ResponseEntity<List<DegreeModel>>(degrees, HttpStatus.OK);
+		return new ResponseEntity<>(degrees, HttpStatus.OK);
 	}
 }

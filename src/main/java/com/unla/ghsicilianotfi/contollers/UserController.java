@@ -19,12 +19,12 @@ public class UserController {
 		model.addAttribute("logout", logout);
 		return ViewRouteHelper.USER_LOGIN;
 	}
-	
+
 	@GetMapping("/logout")
 	public String logout(Model model) {
 		return ViewRouteHelper.USER_LOGOUT;
 	}
-	
+
 	@GetMapping("/loginsuccess")
 	public String loginCheck() {
 		return "redirect:/index";

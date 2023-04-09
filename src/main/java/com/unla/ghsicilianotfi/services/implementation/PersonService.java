@@ -19,9 +19,9 @@ public class PersonService implements IPersonService {
 	@Autowired
 	@Qualifier("personRepository")
 	private IPersonRepository personRepository;
-	
+
 	private ModelMapper modelMapper = new ModelMapper();
-	
+
 	@Override
 	public List<Person> getAll() {
 		return personRepository.findAll();
@@ -52,10 +52,10 @@ public class PersonService implements IPersonService {
 	public PersonModel findByName(String name) {
 		return modelMapper.map(personRepository.findByName(name), PersonModel.class);
 	}
-	
+
 	@Override
 	public List<PersonModel> findByDegreeName(String degreeName) {
-		List<PersonModel> models = new ArrayList<PersonModel>();
+		List<PersonModel> models = new ArrayList<>();
 		for (Person person : personRepository.findByDegreeName(degreeName)) {
 			models.add(modelMapper.map(person, PersonModel.class));
 		}

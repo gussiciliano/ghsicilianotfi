@@ -18,9 +18,9 @@ public class DegreeService implements IDegreeService {
 	@Autowired
 	@Qualifier("degreeRepository")
 	private IDegreeRepository degreeRepository;
-	
+
 	private ModelMapper modelMapper = new ModelMapper();
-	
+
 	@Override
 	public List<Degree> getAll() {
 		return degreeRepository.findAll();

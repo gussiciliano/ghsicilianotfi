@@ -11,12 +11,12 @@ import lombok.Setter;
 @Getter @Setter @NoArgsConstructor
 public class PersonModel {
 	private int id;
-	
+
 	private String name;
-	
+
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private LocalDate birthdate;
-	
+
 	public PersonModel(int id, String name, LocalDate birthdate) {
 		this.setId(id);
 		this.name = name;
