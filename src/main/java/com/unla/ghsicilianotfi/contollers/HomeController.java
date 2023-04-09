@@ -18,11 +18,11 @@ import com.unla.ghsicilianotfi.services.IPersonService;
 @Controller
 @RequestMapping("/")
 public class HomeController {
-	
+
 	@Autowired
 	@Qualifier("personService")
 	private IPersonService personService;
-	
+
 	//GET Example: SERVER/index
 	@GetMapping("/index")
 	public ModelAndView index() {
@@ -32,7 +32,7 @@ public class HomeController {
 		modelAndView.addObject("persons", personService.getAll());
 		return modelAndView;
 	}
-	
+
 	//GET Example: SERVER/hello?name=someName
 	@GetMapping("/hello")
 	public ModelAndView helloParams1(@RequestParam(name="name", required=false, defaultValue="null") String name) {
@@ -40,7 +40,7 @@ public class HomeController {
 		mV.addObject("name", name);
 		return mV;
 	}
-	
+
 	//GET Example: SERVER/hello/someName
 	@GetMapping("/hello/{name}")
 	public ModelAndView helloParams2(@PathVariable("name") String name) {
@@ -48,7 +48,7 @@ public class HomeController {
 		mV.addObject("name", name);
 		return mV;
 	}
-	
+
 	@GetMapping("/")
 	public RedirectView redirectToHomeIndex() {
 		return new RedirectView(ViewRouteHelper.ROUTE);
