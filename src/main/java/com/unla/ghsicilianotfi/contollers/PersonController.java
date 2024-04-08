@@ -1,5 +1,7 @@
 package com.unla.ghsicilianotfi.contollers;
 
+import java.util.Optional;
+
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -78,10 +80,10 @@ public class PersonController {
 	@PostMapping("/update")
 	public RedirectView update(@ModelAttribute("person") PersonModel personModel) {
 		Person person = modelMapper.map(personModel, Person.class);
-		if(personModel.getId() > 0) {
-			Person personOld = personService.findById(personModel.getId());
-			person.setBirthdate(personOld.getBirthdate());
-			person.setCreatedAt(personOld.getCreatedAt());
+		Optional<Person> personOld = personService.findById(personModel.getId());
+		if(personOld.isPresent()) {
+			person.setBirthdate(personOld.get().getBirthdate());
+			person.setCreatedAt(personOld.get().getCreatedAt());
 		}
 		personService.insertOrUpdate(person);
 		return new RedirectView(ViewRouteHelper.PERSON_ROOT);

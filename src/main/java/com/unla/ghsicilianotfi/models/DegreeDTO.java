@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Getter @Setter @NoArgsConstructor
-public class DegreeModel {
+public class DegreeDTO {
 	private int id;
 
 	private String name;
@@ -18,7 +18,7 @@ public class DegreeModel {
 	@Min(3)
 	private int year;
 
-	public DegreeModel(int id, String name, String institution, int year) {
+	public DegreeDTO(int id, String name, String institution, int year) {
 		this.setId(id);
 		this.name = name;
 		this.institution = institution;

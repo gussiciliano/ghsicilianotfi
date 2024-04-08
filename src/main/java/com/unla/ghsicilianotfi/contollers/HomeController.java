@@ -1,7 +1,5 @@
 package com.unla.ghsicilianotfi.contollers;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
@@ -19,9 +17,11 @@ import com.unla.ghsicilianotfi.services.IPersonService;
 @RequestMapping("/")
 public class HomeController {
 
-	@Autowired
-	@Qualifier("personService")
 	private IPersonService personService;
+	
+	public HomeController(IPersonService personService) {
+		this.personService = personService;
+	}
 
 	//GET Example: SERVER/index
 	@GetMapping("/index")

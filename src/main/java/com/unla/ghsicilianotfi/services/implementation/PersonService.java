@@ -1,6 +1,7 @@
 package com.unla.ghsicilianotfi.services.implementation;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,7 +45,7 @@ public class PersonService implements IPersonService {
 	}
 
 	@Override
-	public Person findById(int id) {
+	public Optional<Person> findById(int id) {
 		return personRepository.findById(id);
 	}
 

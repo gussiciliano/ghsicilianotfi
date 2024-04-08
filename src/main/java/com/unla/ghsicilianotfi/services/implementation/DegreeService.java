@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import com.unla.ghsicilianotfi.entities.Degree;
-import com.unla.ghsicilianotfi.models.DegreeModel;
+import com.unla.ghsicilianotfi.models.DegreeDTO;
 import com.unla.ghsicilianotfi.repositories.IDegreeRepository;
 import com.unla.ghsicilianotfi.services.IDegreeService;
 
@@ -27,9 +27,9 @@ public class DegreeService implements IDegreeService {
 	}
 
 	@Override
-	public DegreeModel insertOrUpdate(DegreeModel degreeModel) {
+	public DegreeDTO insertOrUpdate(DegreeDTO degreeModel) {
 		Degree degree = degreeRepository.save(modelMapper.map(degreeModel, Degree.class));
-		return modelMapper.map(degree, DegreeModel.class);
+		return modelMapper.map(degree, DegreeDTO.class);
 	}
 
 	@Override
