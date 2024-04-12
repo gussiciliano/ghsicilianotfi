@@ -1,4 +1,4 @@
-package com.unla.ghsicilianotfi.models;
+package com.unla.ghsicilianotfi.dtos;
 
 import java.time.LocalDate;
 
@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Getter @Setter @NoArgsConstructor
-public class PersonModel {
+public class PersonDTO {
 	private int id;
 
 	private String name;
@@ -17,7 +17,7 @@ public class PersonModel {
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private LocalDate birthdate;
 
-	public PersonModel(int id, String name, LocalDate birthdate) {
+	public PersonDTO(int id, String name, LocalDate birthdate) {
 		this.setId(id);
 		this.name = name;
 		this.birthdate = birthdate;

@@ -7,7 +7,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
 import com.unla.ghsicilianotfi.entities.Person;
-import com.unla.ghsicilianotfi.models.PersonModel;
+import com.unla.ghsicilianotfi.dtos.PersonDTO;
 import com.unla.ghsicilianotfi.repositories.IPersonRepository;
 import com.unla.ghsicilianotfi.services.IPersonService;
 
@@ -29,9 +29,9 @@ public class PersonService implements IPersonService {
 	}
 
 	@Override
-	public PersonModel insertOrUpdate(Person person) {
+	public PersonDTO insertOrUpdate(Person person) {
 		Person personNew = personRepository.save(person);
-		return modelMapper.map(personNew, PersonModel.class);
+		return modelMapper.map(personNew, PersonDTO.class);
 	}
 
 	@Override
@@ -50,15 +50,15 @@ public class PersonService implements IPersonService {
 	}
 
 	@Override
-	public PersonModel findByName(String name) {
-		return modelMapper.map(personRepository.findByName(name), PersonModel.class);
+	public PersonDTO findByName(String name) {
+		return modelMapper.map(personRepository.findByName(name), PersonDTO.class);
 	}
 
 	@Override
-	public List<PersonModel> findByDegreeName(String degreeName) {
-		List<PersonModel> models = new ArrayList<>();
+	public List<PersonDTO> findByDegreeName(String degreeName) {
+		List<PersonDTO> models = new ArrayList<>();
 		for (Person person : personRepository.findByDegreeName(degreeName)) {
-			models.add(modelMapper.map(person, PersonModel.class));
+			models.add(modelMapper.map(person, PersonDTO.class));
 		}
 		return models;
 	}

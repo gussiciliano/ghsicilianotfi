@@ -3,7 +3,7 @@ import java.util.List;
 import java.util.Optional;
 
 import com.unla.ghsicilianotfi.entities.Person;
-import com.unla.ghsicilianotfi.models.PersonModel;
+import com.unla.ghsicilianotfi.dtos.PersonDTO;
 
 
 public interface IPersonService {
@@ -12,12 +12,12 @@ public interface IPersonService {
 
 	public Optional<Person> findById(int id);
 
-	public PersonModel findByName(String name);
+	public PersonDTO findByName(String name);
 
-	public PersonModel insertOrUpdate(Person person);
+	public PersonDTO insertOrUpdate(Person person);
 
 	public boolean remove(int id);
 
-	public List<PersonModel> findByDegreeName(String degreeName);
+	public List<PersonDTO> findByDegreeName(String degreeName);
 }
 

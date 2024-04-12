@@ -5,7 +5,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
 import com.unla.ghsicilianotfi.entities.Degree;
-import com.unla.ghsicilianotfi.models.DegreeDTO;
+import com.unla.ghsicilianotfi.dtos.DegreeDTO;
 import com.unla.ghsicilianotfi.repositories.IDegreeRepository;
 import com.unla.ghsicilianotfi.services.IDegreeService;
 

@@ -1,4 +1,4 @@
-package com.unla.ghsicilianotfi.contollers.api.v1;
+package com.unla.ghsicilianotfi.controllers.api.v1;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.unla.ghsicilianotfi.models.DegreeDTO;
+import com.unla.ghsicilianotfi.dtos.DegreeDTO;
 
 @RestController
 @RequestMapping("/api/v1/degree")
