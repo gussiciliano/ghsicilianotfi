@@ -5,8 +5,6 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
@@ -21,9 +19,11 @@ import com.unla.ghsicilianotfi.repositories.IUserRepository;
 @Service("userService")
 public class UserService implements UserDetailsService {
 
-	@Autowired
-	@Qualifier("userRepository")
 	private IUserRepository userRepository;
+
+	public UserService(IUserRepository userRepository) {
+		this.userRepository = userRepository;
+	}
 
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {

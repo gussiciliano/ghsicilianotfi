@@ -3,8 +3,6 @@ package com.unla.ghsicilianotfi.contollers;
 import java.util.Optional;
 
 import org.modelmapper.ModelMapper;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -23,11 +21,13 @@ import com.unla.ghsicilianotfi.services.IPersonService;
 @RequestMapping("/person")
 public class PersonController {
 
-	@Autowired
-	@Qualifier("personService")
 	private IPersonService personService;
 
 	private ModelMapper modelMapper = new ModelMapper();
+
+	public PersonController(IPersonService personService) {
+		this.personService = personService;
+	}
 
 	@GetMapping("")
 	public ModelAndView index() {

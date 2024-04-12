@@ -4,8 +4,6 @@ import java.util.List;
 import java.util.Optional;
 
 import org.modelmapper.ModelMapper;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import com.unla.ghsicilianotfi.entities.Person;
@@ -17,11 +15,13 @@ import com.unla.ghsicilianotfi.services.IPersonService;
 @Service("personService")
 public class PersonService implements IPersonService {
 
-	@Autowired
-	@Qualifier("personRepository")
 	private IPersonRepository personRepository;
 
 	private ModelMapper modelMapper = new ModelMapper();
+
+	public PersonService(IPersonRepository personRepository) {
+		this.personRepository = personRepository;
+	}
 
 	@Override
 	public List<Person> getAll() {
