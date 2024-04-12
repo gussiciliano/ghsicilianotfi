@@ -80,10 +80,10 @@ public class PersonController {
 	@PostMapping("/update")
 	public RedirectView update(@ModelAttribute("person") PersonDTO personDTO) {
 		Person person = modelMapper.map(personDTO, Person.class);
-		Optional<Person> personOld = personService.findById(personDTO.getId());
-		if(personOld.isPresent()) {
-			person.setBirthdate(personOld.get().getBirthdate());
-			person.setCreatedAt(personOld.get().getCreatedAt());
+		Person personOld = modelMapper.map(personService.findById(personDTO.getId()), Person.class);
+		if(personOld != null ) {
+			person.setBirthdate(personOld.getBirthdate());
+			person.setCreatedAt(personOld.getCreatedAt());
 		}
 		personService.insertOrUpdate(person);
 		return new RedirectView(ViewRouteHelper.PERSON_ROOT);

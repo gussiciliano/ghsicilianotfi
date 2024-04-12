@@ -10,7 +10,7 @@ public interface IPersonService {
 
 	public List<Person> getAll();
 
-	public Optional<Person> findById(int id);
+	public PersonDTO findById(int id);
 
 	public PersonDTO findByName(String name);
 

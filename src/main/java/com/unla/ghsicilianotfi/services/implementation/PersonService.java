@@ -1,7 +1,6 @@
 package com.unla.ghsicilianotfi.services.implementation;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
@@ -45,13 +44,15 @@ public class PersonService implements IPersonService {
 	}
 
 	@Override
-	public Optional<Person> findById(int id) {
-		return personRepository.findById(id);
+	public PersonDTO findById(int id) {
+		Person p = personRepository.findById(id).orElse(null);
+		return modelMapper.map(p, PersonDTO.class);
 	}
 
 	@Override
 	public PersonDTO findByName(String name) {
-		return modelMapper.map(personRepository.findByName(name), PersonDTO.class);
+		Person p = personRepository.findByName(name).orElse(null);
+		return modelMapper.map(p, PersonDTO.class);
 	}
 
 	@Override

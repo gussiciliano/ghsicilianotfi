@@ -12,9 +12,9 @@ import com.unla.ghsicilianotfi.entities.Degree;
 @Repository("degreeRepository")
 public interface IDegreeRepository extends JpaRepository<Degree, Serializable> {
 
-	public abstract Optional<Degree> findByName(String name);
+	public abstract Degree findByName(String name);
 
-	public abstract Optional<Degree> findByInstitutionAndYear(String institution, int year);
+	public abstract Degree findByInstitutionAndYear(String institution, int year);
 
 	public abstract List<Degree> findByInstitutionAndYearOrderByYearDesc(String institution, int year);
 }
