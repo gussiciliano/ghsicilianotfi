@@ -2,8 +2,11 @@
 
 BOOTSTRAP PARA APRENDIZAJE DE PROYECTOS EN JAVA SPRING
 
+[Documentación versión 2023 - Spring Boot 3.2.4](https://drive.google.com/file/d/1kaVnsLC_FRtTR2C7gyxHSwlyvZD6rtN6/view?usp=drive_link)
+Se recomienda ir a la página 87 sección "Mejoras y actualizaciones importantes" apartado 2024 (y revisar los updates anteriores). 
+
 [Documentación versión 2023 - Spring Boot 3.0.4 (Java 17)](https://drive.google.com/file/d/1JF2yve489njnFPkzLGQZDox8KAx8Pobl/view)
-En caso de no haber visto los cambios de la versión 2022 se recomienda ir a la página 87 sección "Mejoras y actualizaciones importantes". 
+En caso de no haber visto los cambios de la versión 2022 se recomienda ir a la página 87 sección "Mejoras y actualizaciones importantes" apartado 2022. 
 
 [Documentación versión 2022 - Spring Boot 2.6.4 + Lombok + ModelMapper](https://drive.google.com/file/d/1D_KgYmJ1DpbzrqO6-M5NgyqlLHkIayoS/view)
 Info de los cambios en la página 87 sección "Mejoras y actualizaciones importantes". 
