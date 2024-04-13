@@ -3,12 +3,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.modelmapper.ModelMapper;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import com.unla.ghsicilianotfi.entities.Person;
-import com.unla.ghsicilianotfi.models.PersonModel;
+import com.unla.ghsicilianotfi.dtos.PersonDTO;
 import com.unla.ghsicilianotfi.repositories.IPersonRepository;
 import com.unla.ghsicilianotfi.services.IPersonService;
 
@@ -16,11 +14,13 @@ import com.unla.ghsicilianotfi.services.IPersonService;
 @Service("personService")
 public class PersonService implements IPersonService {
 
-	@Autowired
-	@Qualifier("personRepository")
 	private IPersonRepository personRepository;
 
 	private ModelMapper modelMapper = new ModelMapper();
+
+	public PersonService(IPersonRepository personRepository) {
+		this.personRepository = personRepository;
+	}
 
 	@Override
 	public List<Person> getAll() {
@@ -28,9 +28,8 @@ public class PersonService implements IPersonService {
 	}
 
 	@Override
-	public PersonModel insertOrUpdate(Person person) {
-		Person personNew = personRepository.save(person);
-		return modelMapper.map(personNew, PersonModel.class);
+	public Person insertOrUpdate(Person person) {
+		return personRepository.save(person);
 	}
 
 	@Override
@@ -45,19 +44,19 @@ public class PersonService implements IPersonService {
 
 	@Override
 	public Person findById(int id) {
-		return personRepository.findById(id);
+		return personRepository.findById(id).orElse(null);
 	}
 
 	@Override
-	public PersonModel findByName(String name) {
-		return modelMapper.map(personRepository.findByName(name), PersonModel.class);
+	public Person findByName(String name) {
+		return personRepository.findByName(name).orElse(null);
 	}
 
 	@Override
-	public List<PersonModel> findByDegreeName(String degreeName) {
-		List<PersonModel> models = new ArrayList<>();
+	public List<PersonDTO> findByDegreeName(String degreeName) {
+		List<PersonDTO> models = new ArrayList<>();
 		for (Person person : personRepository.findByDegreeName(degreeName)) {
-			models.add(modelMapper.map(person, PersonModel.class));
+			models.add(modelMapper.map(person, PersonDTO.class));
 		}
 		return models;
 	}

@@ -2,8 +2,7 @@ package com.unla.ghsicilianotfi.services;
 import java.util.List;
 
 import com.unla.ghsicilianotfi.entities.Person;
-import com.unla.ghsicilianotfi.models.PersonModel;
-
+import com.unla.ghsicilianotfi.dtos.PersonDTO;
 
 public interface IPersonService {
 
@@ -11,12 +10,12 @@ public interface IPersonService {
 
 	public Person findById(int id);
 
-	public PersonModel findByName(String name);
+	public Person findByName(String name);
 
-	public PersonModel insertOrUpdate(Person person);
+	public Person insertOrUpdate(Person person);
 
 	public boolean remove(int id);
 
-	public List<PersonModel> findByDegreeName(String degreeName);
+	public List<PersonDTO> findByDegreeName(String degreeName);
 }
 

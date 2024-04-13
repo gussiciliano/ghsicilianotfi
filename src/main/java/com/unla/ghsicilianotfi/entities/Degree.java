@@ -5,7 +5,6 @@ import java.time.LocalDateTime;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
-import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
@@ -13,27 +12,22 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
 @Getter @Setter @NoArgsConstructor
-@Table(name="degree")
 public class Degree {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 
-	@Column(name="name")
 	private String name;
 
-	@Column(name="institution")
 	private String institution;
 
-	@Column(name="year")
 	private int year;
 
 	@ManyToOne(fetch = FetchType.LAZY)
@@ -41,11 +35,9 @@ public class Degree {
 	@JoinColumn(name="person_id", nullable=true)
 	private Person person;
 
-	@Column(name="createdat")
 	@CreationTimestamp
 	private LocalDateTime createdAt;
 
-	@Column(name="updatedat")
 	@UpdateTimestamp
 	private LocalDateTime updatedAt;
 
