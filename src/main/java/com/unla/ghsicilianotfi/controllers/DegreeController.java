@@ -1,4 +1,4 @@
-package com.unla.ghsicilianotfi.contollers;
+package com.unla.ghsicilianotfi.controllers;
 
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
@@ -12,7 +12,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 
 import com.unla.ghsicilianotfi.helpers.ViewRouteHelper;
-import com.unla.ghsicilianotfi.models.DegreeDTO;
+import com.unla.ghsicilianotfi.dtos.DegreeDTO;
 import com.unla.ghsicilianotfi.services.IDegreeService;
 
 import jakarta.validation.Valid;

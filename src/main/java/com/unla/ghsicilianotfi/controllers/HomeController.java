@@ -1,4 +1,4 @@
-package com.unla.ghsicilianotfi.contollers;
+package com.unla.ghsicilianotfi.controllers;
 
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.User;

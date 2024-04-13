@@ -1,4 +1,4 @@
-package com.unla.ghsicilianotfi.models;
+package com.unla.ghsicilianotfi.dtos;
 
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.Size;

@@ -1,10 +1,8 @@
-package com.unla.ghsicilianotfi.contollers;
+package com.unla.ghsicilianotfi.controllers;
 
 import java.util.Optional;
 
 import org.modelmapper.ModelMapper;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -16,18 +14,20 @@ import org.springframework.web.servlet.view.RedirectView;
 
 import com.unla.ghsicilianotfi.entities.Person;
 import com.unla.ghsicilianotfi.helpers.ViewRouteHelper;
-import com.unla.ghsicilianotfi.models.PersonModel;
+import com.unla.ghsicilianotfi.dtos.PersonDTO;
 import com.unla.ghsicilianotfi.services.IPersonService;
 
 @Controller
 @RequestMapping("/person")
 public class PersonController {
 
-	@Autowired
-	@Qualifier("personService")
 	private IPersonService personService;
 
 	private ModelMapper modelMapper = new ModelMapper();
+
+	public PersonController(IPersonService personService) {
+		this.personService = personService;
+	}
 
 	@GetMapping("")
 	public ModelAndView index() {
@@ -39,13 +39,13 @@ public class PersonController {
 	@GetMapping("/new")
 	public ModelAndView create() {
 		ModelAndView mAV = new ModelAndView(ViewRouteHelper.PERSON_NEW);
-		mAV.addObject("person", new PersonModel());
+		mAV.addObject("person", new PersonDTO());
 		return mAV;
 	}
 
 	@PostMapping("/create")
-	public RedirectView create(@ModelAttribute("person") PersonModel personModel) {
-		personService.insertOrUpdate(modelMapper.map(personModel, Person.class));
+	public RedirectView create(@ModelAttribute("person") PersonDTO personDTO) {
+		personService.insertOrUpdate(modelMapper.map(personDTO, Person.class));
 		return new RedirectView(ViewRouteHelper.PERSON_ROOT);
 	}
 
@@ -78,12 +78,12 @@ public class PersonController {
 	}
 
 	@PostMapping("/update")
-	public RedirectView update(@ModelAttribute("person") PersonModel personModel) {
-		Person person = modelMapper.map(personModel, Person.class);
-		Optional<Person> personOld = personService.findById(personModel.getId());
-		if(personOld.isPresent()) {
-			person.setBirthdate(personOld.get().getBirthdate());
-			person.setCreatedAt(personOld.get().getCreatedAt());
+	public RedirectView update(@ModelAttribute("person") PersonDTO personDTO) {
+		Person person = modelMapper.map(personDTO, Person.class);
+		Person personOld = modelMapper.map(personService.findById(personDTO.getId()), Person.class);
+		if(personOld != null ) {
+			person.setBirthdate(personOld.getBirthdate());
+			person.setCreatedAt(personOld.getCreatedAt());
 		}
 		personService.insertOrUpdate(person);
 		return new RedirectView(ViewRouteHelper.PERSON_ROOT);

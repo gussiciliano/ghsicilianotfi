@@ -2,7 +2,7 @@ package com.unla.ghsicilianotfi.services;
 import java.util.List;
 
 import com.unla.ghsicilianotfi.entities.Degree;
-import com.unla.ghsicilianotfi.models.DegreeDTO;
+import com.unla.ghsicilianotfi.dtos.DegreeDTO;
 
 
 public interface IDegreeService {
