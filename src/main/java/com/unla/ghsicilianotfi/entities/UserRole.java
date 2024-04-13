@@ -35,11 +35,9 @@ public class UserRole {
 	@Column(name="role", nullable=false, length=100)
 	private String role;
 
-	@Column(name="createdat")
 	@CreationTimestamp
 	private LocalDateTime createdAt;
 
-	@Column(name="updatedat")
 	@UpdateTimestamp
 	private LocalDateTime updatedAt;
 

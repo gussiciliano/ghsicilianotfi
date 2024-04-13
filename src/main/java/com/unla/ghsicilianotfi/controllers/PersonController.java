@@ -1,7 +1,5 @@
 package com.unla.ghsicilianotfi.controllers;
 
-import java.util.Optional;
-
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -52,21 +50,24 @@ public class PersonController {
 	@GetMapping("/{id}")
 	public ModelAndView get(@PathVariable("id") int id) {
 		ModelAndView mAV = new ModelAndView(ViewRouteHelper.PERSON_UPDATE);
-		mAV.addObject("person", personService.findById(id));
+		PersonDTO personDTO = modelMapper.map(personService.findById(id), PersonDTO.class);
+		mAV.addObject("person", personDTO);
 		return mAV;
 	}
 
 	@GetMapping("/partial/{id}")
 	public ModelAndView getPartial(@PathVariable("id") int id) {
 		ModelAndView mAV = new ModelAndView(ViewRouteHelper.PERSON_PARTIAL_VIEW);
-		mAV.addObject("person", personService.findById(id));
+		PersonDTO personDTO = modelMapper.map(personService.findById(id), PersonDTO.class);
+		mAV.addObject("person", personDTO);
 		return mAV;
 	}
 
 	@GetMapping("/by_name/{name}")
 	public ModelAndView getByName(@PathVariable("name") String name) {
 		ModelAndView mAV = new ModelAndView(ViewRouteHelper.PERSON_UPDATE);
-		mAV.addObject("person", personService.findByName(name));
+		PersonDTO personDTO = modelMapper.map(personService.findByName(name), PersonDTO.class);
+		mAV.addObject("person", personDTO);
 		return mAV;
 	}
 
@@ -79,13 +80,11 @@ public class PersonController {
 
 	@PostMapping("/update")
 	public RedirectView update(@ModelAttribute("person") PersonDTO personDTO) {
-		Person person = modelMapper.map(personDTO, Person.class);
-		Person personOld = modelMapper.map(personService.findById(personDTO.getId()), Person.class);
-		if(personOld != null ) {
-			person.setBirthdate(personOld.getBirthdate());
-			person.setCreatedAt(personOld.getCreatedAt());
+		Person personToUpdate = modelMapper.map(personService.findById(personDTO.getId()), Person.class);
+		if(personToUpdate != null ) {
+			personToUpdate.setName(personDTO.getName());
+			personService.insertOrUpdate(personToUpdate);
 		}
-		personService.insertOrUpdate(person);
 		return new RedirectView(ViewRouteHelper.PERSON_ROOT);
 	}
 

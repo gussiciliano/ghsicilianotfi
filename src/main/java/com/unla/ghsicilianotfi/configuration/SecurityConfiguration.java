@@ -1,12 +1,10 @@
 package com.unla.ghsicilianotfi.configuration;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
-import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -30,7 +28,7 @@ public class SecurityConfiguration {
 	}
 
 	@Bean
-	public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception{
+	SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception{
 		return http
 				.csrf(AbstractHttpConfigurer::disable)
 				.cors(AbstractHttpConfigurer::disable)
@@ -56,12 +54,12 @@ public class SecurityConfiguration {
 	}
 
 	@Bean
-	public AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration) throws Exception {
+	AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration) throws Exception {
 		return authenticationConfiguration.getAuthenticationManager();
 	}
 
 	@Bean
-	public AuthenticationProvider authenticationProvider(){
+	AuthenticationProvider authenticationProvider(){
 		DaoAuthenticationProvider provider = new DaoAuthenticationProvider();
 		provider.setPasswordEncoder(passwordEncoder());
 		provider.setUserDetailsService(userService);
@@ -69,34 +67,8 @@ public class SecurityConfiguration {
 	}
 
 	@Bean
-	public PasswordEncoder passwordEncoder(){
+	PasswordEncoder passwordEncoder(){
 		return new BCryptPasswordEncoder();
 	}
-
-    /*@Autowired
-	public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-		auth.userDetailsService(userService).passwordEncoder(new BCryptPasswordEncoder());
-	}*/
-
-    /*@Bean
-	public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-		http.authorizeHttpRequests()
-				.requestMatchers("/css/*", "/imgs/*", "/js/*", "/vendor/bootstrap/css/*",
-						"/vendor/jquery/*", "/vendor/bootstrap/js/*").permitAll()
-				.anyRequest().authenticated()
-			.and()
-				.formLogin().loginPage("/login").loginProcessingUrl("/loginprocess")
-				.usernameParameter("username").passwordParameter("password")
-				.defaultSuccessUrl("/loginsuccess").permitAll()
-			.and()
-				.logout().logoutUrl("/logout").logoutSuccessUrl("/logout").permitAll();
-		return http.build();
-	}*/
-
-    /* No usado en este ejemplo
-	@Bean
-    public WebSecurityCustomizer webSecurityCustomizer() {
-        return (web) -> web.ignoring().requestMatchers("/images/**", "/js/**", "/webjars/**");
-    }*/
 }
 

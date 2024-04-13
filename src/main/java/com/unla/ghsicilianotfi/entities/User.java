@@ -32,14 +32,11 @@ public class User {
 	@Column(name="password", nullable=false, length=60)
 	private String password;
 
-	@Column(name="enabled")
 	private boolean enabled;
 
-	@Column(name="createdat")
 	@CreationTimestamp
 	private LocalDateTime createdAt;
 
-	@Column(name="updatedat")
 	@UpdateTimestamp
 	private LocalDateTime updatedAt;
 

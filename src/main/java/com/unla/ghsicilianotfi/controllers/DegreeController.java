@@ -37,8 +37,8 @@ public class DegreeController {
 	}
 
 	@PostMapping("/")
-	public RedirectView create(@ModelAttribute("degree") DegreeDTO degreeModel) {
-		degreeService.insertOrUpdate(degreeModel);
+	public RedirectView create(@ModelAttribute("degree") DegreeDTO degreeDTO) {
+		degreeService.insertOrUpdate(degreeDTO);
 		return new RedirectView(ViewRouteHelper.DEGREE_ROOT);
 	}
 

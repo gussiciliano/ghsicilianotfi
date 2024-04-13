@@ -28,9 +28,8 @@ public class PersonService implements IPersonService {
 	}
 
 	@Override
-	public PersonDTO insertOrUpdate(Person person) {
-		Person personNew = personRepository.save(person);
-		return modelMapper.map(personNew, PersonDTO.class);
+	public Person insertOrUpdate(Person person) {
+		return personRepository.save(person);
 	}
 
 	@Override
@@ -44,15 +43,13 @@ public class PersonService implements IPersonService {
 	}
 
 	@Override
-	public PersonDTO findById(int id) {
-		Person p = personRepository.findById(id).orElse(null);
-		return modelMapper.map(p, PersonDTO.class);
+	public Person findById(int id) {
+		return personRepository.findById(id).orElse(null);
 	}
 
 	@Override
-	public PersonDTO findByName(String name) {
-		Person p = personRepository.findByName(name).orElse(null);
-		return modelMapper.map(p, PersonDTO.class);
+	public Person findByName(String name) {
+		return personRepository.findByName(name).orElse(null);
 	}
 
 	@Override

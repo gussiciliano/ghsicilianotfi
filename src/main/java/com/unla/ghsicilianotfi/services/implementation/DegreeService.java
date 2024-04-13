@@ -9,7 +9,6 @@ import com.unla.ghsicilianotfi.dtos.DegreeDTO;
 import com.unla.ghsicilianotfi.repositories.IDegreeRepository;
 import com.unla.ghsicilianotfi.services.IDegreeService;
 
-
 @Service("degreeService")
 public class DegreeService implements IDegreeService {
 
