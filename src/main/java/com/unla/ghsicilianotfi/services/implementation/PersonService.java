@@ -1,5 +1,4 @@
 package com.unla.ghsicilianotfi.services.implementation;
-import java.util.ArrayList;
 import java.util.List;
 
 import java.util.stream.Collectors;
@@ -56,7 +55,8 @@ public class PersonService implements IPersonService {
 	@Override
 	public List<PersonDTO> findByDegreeName(String degreeName) {
 		return personRepository.findByDegreeName(degreeName)
-				.stream().map(person -> modelMapper.map(person, PersonDTO.class))
+				.stream()
+				.map(person -> modelMapper.map(person, PersonDTO.class))
 				.collect(Collectors.toList());
 	}
 }
