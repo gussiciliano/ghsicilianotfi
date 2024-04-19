@@ -8,9 +8,9 @@ public interface IPersonService {
 
 	public List<Person> getAll();
 
-	public Person findById(int id);
+	public Person findById(int id) throws Exception;
 
-	public Person findByName(String name);
+	public Person findByName(String name) throws Exception;
 
 	public Person insertOrUpdate(Person person);
 

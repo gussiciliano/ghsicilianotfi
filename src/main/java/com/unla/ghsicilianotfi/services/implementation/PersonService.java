@@ -43,13 +43,17 @@ public class PersonService implements IPersonService {
 	}
 
 	@Override
-	public Person findById(int id) {
-		return personRepository.findById(id).orElse(null);
+	public Person findById(int id) throws Exception {
+		return personRepository.findById(id).orElseThrow(
+				() -> new Exception("ERROR no existe Persona con Id: " + id)
+		);
 	}
 
 	@Override
-	public Person findByName(String name) {
-		return personRepository.findByName(name).orElse(null);
+	public Person findByName(String name) throws Exception {
+		return personRepository.findByName(name).orElseThrow(
+				() -> new Exception("ERROR no existe Persona con Nombre: " + name)
+		);
 	}
 
 	@Override
