@@ -2,6 +2,8 @@
 
 BOOTSTRAP PARA APRENDIZAJE DE PROYECTOS EN JAVA SPRING
 
+Ejemplo de api con postman: [ghsicilianotfi.postman_collection.json](https://github.com/gussiciliano/ghsicilianotfi/files/15042095/ghsicilianotfi.postman_collection.json)
+
 [Documentación versión 2023 - Spring Boot 3.2.4](https://drive.google.com/file/d/1kaVnsLC_FRtTR2C7gyxHSwlyvZD6rtN6/view?usp=drive_link)
 Se recomienda ir a la página 87 sección "Mejoras y actualizaciones importantes" apartado 2024 (y revisar los updates anteriores). 
 
