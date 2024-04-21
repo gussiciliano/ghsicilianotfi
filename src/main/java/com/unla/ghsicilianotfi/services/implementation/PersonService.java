@@ -1,6 +1,6 @@
 package com.unla.ghsicilianotfi.services.implementation;
 import java.util.List;
-
+import java.util.Optional;
 import java.util.stream.Collectors;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
@@ -43,10 +43,8 @@ public class PersonService implements IPersonService {
 	}
 
 	@Override
-	public Person findById(int id) throws Exception {
-		return personRepository.findById(id).orElseThrow(
-				() -> new Exception("ERROR no existe Persona con Id: " + id)
-		);
+	public Optional<Person> findById(int id) throws Exception {
+		return personRepository.findById(id);
 	}
 
 	@Override

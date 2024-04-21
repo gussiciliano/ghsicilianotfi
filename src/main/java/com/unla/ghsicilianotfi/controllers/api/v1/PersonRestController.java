@@ -5,6 +5,7 @@ import com.unla.ghsicilianotfi.dtos.RequestPersonDTO;
 import com.unla.ghsicilianotfi.entities.Person;
 import com.unla.ghsicilianotfi.services.IPersonService;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 import org.modelmapper.ModelMapper;
 import org.springframework.http.HttpStatus;
@@ -44,9 +45,14 @@ public class PersonRestController {
     @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<PersonDTO> getPersonById(@PathVariable(name = "id") int id)
             throws Exception {
-        return new ResponseEntity<>(
-                modelMapper.map(personService.findById(id), PersonDTO.class)
-                ,HttpStatus.OK);
+    	Optional<Person> personOptional = personService.findById(id);
+        if (personOptional.isPresent()) {
+            return new ResponseEntity<>(
+                    modelMapper.map(personOptional.get(), PersonDTO.class),
+                    HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
     }
 
     @GetMapping(value = "/name", produces = MediaType.APPLICATION_JSON_VALUE)
@@ -68,12 +74,16 @@ public class PersonRestController {
 
     @PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<PersonDTO> putPerson(@RequestBody PersonDTO personDTO) throws Exception {
-        Person person = personService.findById(personDTO.getId());
-        person.setName(personDTO.getName());
-        person.setBirthdate(personDTO.getBirthdate());
-        return new ResponseEntity<>(
-                modelMapper.map(personService.insertOrUpdate(person),PersonDTO.class)
-                , HttpStatus.OK);
+    	Optional<Person> person = personService.findById(personDTO.getId());
+    	if(person.isPresent()) {
+	        person.get().setName(personDTO.getName());
+	        person.get().setBirthdate(personDTO.getBirthdate());
+	        return new ResponseEntity<>(
+	                modelMapper.map(personService.insertOrUpdate(person.get()),PersonDTO.class)
+	                , HttpStatus.OK);
+    	} else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
     }
 
     @DeleteMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
