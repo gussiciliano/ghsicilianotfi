@@ -48,23 +48,23 @@ public class PersonController {
 	}
 
 	@GetMapping("/{id}")
-	public ModelAndView get(@PathVariable("id") int id) {
+	public ModelAndView get(@PathVariable("id") int id) throws Exception {
 		ModelAndView mAV = new ModelAndView(ViewRouteHelper.PERSON_UPDATE);
-		PersonDTO personDTO = modelMapper.map(personService.findById(id), PersonDTO.class);
+		PersonDTO personDTO = modelMapper.map(personService.findById(id).get(), PersonDTO.class);
 		mAV.addObject("person", personDTO);
 		return mAV;
 	}
 
 	@GetMapping("/partial/{id}")
-	public ModelAndView getPartial(@PathVariable("id") int id) {
+	public ModelAndView getPartial(@PathVariable("id") int id) throws Exception {
 		ModelAndView mAV = new ModelAndView(ViewRouteHelper.PERSON_PARTIAL_VIEW);
-		PersonDTO personDTO = modelMapper.map(personService.findById(id), PersonDTO.class);
+		PersonDTO personDTO = modelMapper.map(personService.findById(id).get(), PersonDTO.class);
 		mAV.addObject("person", personDTO);
 		return mAV;
 	}
 
 	@GetMapping("/by_name/{name}")
-	public ModelAndView getByName(@PathVariable("name") String name) {
+	public ModelAndView getByName(@PathVariable("name") String name) throws Exception {
 		ModelAndView mAV = new ModelAndView(ViewRouteHelper.PERSON_UPDATE);
 		PersonDTO personDTO = modelMapper.map(personService.findByName(name), PersonDTO.class);
 		mAV.addObject("person", personDTO);
@@ -79,8 +79,8 @@ public class PersonController {
 	}
 
 	@PostMapping("/update")
-	public RedirectView update(@ModelAttribute("person") PersonDTO personDTO) {
-		Person personToUpdate = modelMapper.map(personService.findById(personDTO.getId()), Person.class);
+	public RedirectView update(@ModelAttribute("person") PersonDTO personDTO) throws Exception {
+		Person personToUpdate = modelMapper.map(personService.findById(personDTO.getId()).get(), Person.class);
 		if(personToUpdate != null ) {
 			personToUpdate.setName(personDTO.getName());
 			personService.insertOrUpdate(personToUpdate);

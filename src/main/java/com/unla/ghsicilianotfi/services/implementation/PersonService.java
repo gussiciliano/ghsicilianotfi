@@ -1,7 +1,7 @@
 package com.unla.ghsicilianotfi.services.implementation;
-import java.util.ArrayList;
 import java.util.List;
-
+import java.util.Optional;
+import java.util.stream.Collectors;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
@@ -43,21 +43,22 @@ public class PersonService implements IPersonService {
 	}
 
 	@Override
-	public Person findById(int id) {
-		return personRepository.findById(id).orElse(null);
+	public Optional<Person> findById(int id) throws Exception {
+		return personRepository.findById(id);
 	}
 
 	@Override
-	public Person findByName(String name) {
-		return personRepository.findByName(name).orElse(null);
+	public Person findByName(String name) throws Exception {
+		return personRepository.findByName(name).orElseThrow(
+				() -> new Exception("ERROR no existe Persona con Nombre: " + name)
+		);
 	}
 
 	@Override
 	public List<PersonDTO> findByDegreeName(String degreeName) {
-		List<PersonDTO> models = new ArrayList<>();
-		for (Person person : personRepository.findByDegreeName(degreeName)) {
-			models.add(modelMapper.map(person, PersonDTO.class));
-		}
-		return models;
+		return personRepository.findByDegreeName(degreeName)
+				.stream()
+				.map(person -> modelMapper.map(person, PersonDTO.class))
+				.collect(Collectors.toList());
 	}
 }
