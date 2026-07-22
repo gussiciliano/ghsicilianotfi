@@ -5,12 +5,13 @@ import com.unla.ghsicilianotfi.entities.Degree;
 import com.unla.ghsicilianotfi.dtos.DegreeDTO;
 
 
+@SuppressWarnings("unused")
 public interface IDegreeService {
 
-	public List<Degree> getAll();
+	List<Degree> getAll();
 
-	public DegreeDTO insertOrUpdate(DegreeDTO degreeModel);
+	void insertOrUpdate(DegreeDTO degreeDTO);
 
-	public boolean remove(int id);
+	boolean remove(int id);
 }
 

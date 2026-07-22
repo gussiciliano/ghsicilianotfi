@@ -7,16 +7,16 @@ import com.unla.ghsicilianotfi.dtos.PersonDTO;
 
 public interface IPersonService {
 
-	public List<Person> getAll();
+	List<Person> getAll();
 
-	public Optional<Person> findById(int id) throws Exception;
+	Optional<Person> findById(int id);
 
-	public Person findByName(String name) throws Exception;
+	Person findByName(String name);
 
-	public Person insertOrUpdate(Person person);
+	Person insertOrUpdate(Person person);
 
-	public boolean remove(int id);
+	boolean remove(int id);
 
-	public List<PersonDTO> findByDegreeName(String degreeName);
+	List<PersonDTO> findByDegreeName(String degreeName);
 }
 

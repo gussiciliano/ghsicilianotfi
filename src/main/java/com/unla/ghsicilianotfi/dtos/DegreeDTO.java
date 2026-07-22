@@ -15,7 +15,7 @@ public class DegreeDTO {
 	@Size(min=3, max=12)
 	private String institution;
 
-	@Min(3)
+	@Min(1900)
 	private int year;
 
 	public DegreeDTO(int id, String name, String institution, int year) {

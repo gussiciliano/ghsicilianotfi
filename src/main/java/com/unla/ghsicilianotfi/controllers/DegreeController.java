@@ -21,8 +21,9 @@ import jakarta.validation.Valid;
 @PreAuthorize("hasRole('ROLE_ADMIN')")
 @RequestMapping("/degrees")
 public class DegreeController {
+	private static final String DEGREE_ATTR = "degree";
 
-	private IDegreeService degreeService;
+	private final IDegreeService degreeService;
 	
 	public DegreeController(IDegreeService degreeService) {
 		this.degreeService = degreeService;
@@ -32,30 +33,30 @@ public class DegreeController {
 	public ModelAndView index() {
 		ModelAndView mAV = new ModelAndView(ViewRouteHelper.DEGREE_INDEX);
 		mAV.addObject("degrees", degreeService.getAll());
-		mAV.addObject("degree", new DegreeDTO());
+		mAV.addObject(DEGREE_ATTR, new DegreeDTO());
 		return mAV;
 	}
 
 	@PostMapping("/")
-	public RedirectView create(@ModelAttribute("degree") DegreeDTO degreeDTO) {
+	public RedirectView create(@ModelAttribute(DEGREE_ATTR) DegreeDTO degreeDTO) {
 		degreeService.insertOrUpdate(degreeDTO);
 		return new RedirectView(ViewRouteHelper.DEGREE_ROOT);
 	}
 
 	@GetMapping("/form")
 	public String degree(Model model) {
-		model.addAttribute("degree", new DegreeDTO());
+		model.addAttribute(DEGREE_ATTR, new DegreeDTO());
 		return ViewRouteHelper.DEGREE_FORM;
 	}
 
 	@PostMapping("/new")
-	public ModelAndView newdegree(@Valid @ModelAttribute("degree") DegreeDTO degree, BindingResult bindingResult) {
+	public ModelAndView newdegree(@Valid @ModelAttribute(DEGREE_ATTR) DegreeDTO degree, BindingResult bindingResult) {
 		ModelAndView mV = new ModelAndView();
 		if (bindingResult.hasErrors()) {
 			mV.setViewName(ViewRouteHelper.DEGREE_FORM);
 		} else {
 			mV.setViewName(ViewRouteHelper.DEGREE_NEW);
-			mV.addObject("degree", degree);
+			mV.addObject(DEGREE_ATTR, degree);
 		}
 		return mV;
 	}
