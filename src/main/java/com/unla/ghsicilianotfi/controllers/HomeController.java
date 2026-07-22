@@ -2,6 +2,7 @@ package com.unla.ghsicilianotfi.controllers;
 
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -17,7 +18,7 @@ import com.unla.ghsicilianotfi.services.IPersonService;
 @RequestMapping("/")
 public class HomeController {
 
-	private IPersonService personService;
+	private final IPersonService personService;
 	
 	public HomeController(IPersonService personService) {
 		this.personService = personService;
@@ -27,8 +28,13 @@ public class HomeController {
 	@GetMapping("/index")
 	public ModelAndView index() {
 		ModelAndView modelAndView = new ModelAndView(ViewRouteHelper.INDEX);
-		User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		modelAndView.addObject("username", user.getUsername());
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		Object principal = authentication != null ? authentication.getPrincipal() : null;
+		if (principal instanceof User user) {
+			modelAndView.addObject("username", user.getUsername());
+		} else {
+			modelAndView.addObject("username", "anonymous");
+		}
 		modelAndView.addObject("persons", personService.getAll());
 		return modelAndView;
 	}
