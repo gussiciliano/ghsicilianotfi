@@ -1,9 +1,42 @@
-<form action="#" th:action="@{new}" th:object="${degree}" method="post">
-	<p> Name: <input type="text" th:field="*{name}" /></p>
-	<p> Institution: <input type="text" th:field="*{institution}" /></p>
-	<p th:if="${#fields.hasErrors('institution')}" th:errors="*{institution}">Institution has errors</p>
-	<p> Year: <input type="text" th:field="*{year}" /></p>
-	<p th:if="${#fields.hasErrors('year')}" th:errors="*{year}">Year has errors</p>
-	<input type="submit"/>
-</form>
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{layout :: head}"></head>
+<body>
+    <nav th:replace="~{layout :: navbar}"></nav>
 
+    <main class="container py-4">
+        <div class="page-header">
+            <h2>Nuevo Titulo</h2>
+        </div>
+
+        <div class="card form-card">
+            <div class="card-body">
+                <form th:action="@{/degrees/}" th:object="${degree}" method="post">
+                    <div class="mb-3">
+                        <label for="name" class="col-form-label">Nombre</label>
+                        <input type="text" class="form-control" id="name" th:field="*{name}" required placeholder="Ej: Ingenieria en Sistemas"/>
+                        <div class="text-danger" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="institution" class="col-form-label">Institucion</label>
+                        <input type="text" class="form-control" id="institution" th:field="*{institution}" required placeholder="Ej: UNLA"/>
+                        <div class="text-danger" th:if="${#fields.hasErrors('institution')}" th:errors="*{institution}"></div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="year" class="col-form-label">Anio</label>
+                        <input type="text" class="form-control" id="year" th:field="*{year}" required placeholder="Ej: 2026"/>
+                        <div class="text-danger" th:if="${#fields.hasErrors('year')}" th:errors="*{year}"></div>
+                    </div>
+                    <div class="d-flex">
+                        <button type="submit" class="btn btn-success mr-2">Crear</button>
+                        <a th:href="@{/degrees/}" class="btn btn-outline-secondary">Cancelar</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <footer th:replace="~{layout :: footer}"></footer>
+    <div th:replace="~{layout :: scripts}"></div>
+</body>
+</html>

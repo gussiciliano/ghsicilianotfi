@@ -1,9 +1,31 @@
-<p>
-	Degree: <span th:text="${degree.name}" />
-</p>
-<p>
-	Institution: <span th:text="${degree.institution}" />
-</p>
-<p>
-	Year: <span th:text="${degree.year}" />
-</p>
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{layout :: head}"></head>
+<body>
+    <nav th:replace="~{layout :: navbar}"></nav>
+
+    <main class="container py-4">
+        <div class="page-header">
+            <h2>Titulo creado</h2>
+        </div>
+
+        <div class="card form-card">
+            <div class="card-body">
+                <div class="mb-3">
+                    <strong>Nombre:</strong> <span th:text="${degree.name}">-</span>
+                </div>
+                <div class="mb-3">
+                    <strong>Institucion:</strong> <span th:text="${degree.institution}">-</span>
+                </div>
+                <div class="mb-3">
+                    <strong>Anio:</strong> <span th:text="${degree.year}">-</span>
+                </div>
+                <a th:href="@{/degrees/}" class="btn btn-primary">Volver a titulos</a>
+            </div>
+        </div>
+    </main>
+
+    <footer th:replace="~{layout :: footer}"></footer>
+    <div th:replace="~{layout :: scripts}"></div>
+</body>
+</html>

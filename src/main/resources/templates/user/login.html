@@ -1,29 +1,46 @@
 <!DOCTYPE html>
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<title>UNLa</title>
-		<!-- Bootstrap core CSS -->
-		<link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
-		<link href="/css/modern-business.css" rel="stylesheet" />
-	</head>
-	<body>
-	    <!-- Page Content -->
-	    <div class="container">
-	      <div class="jumbotron">
-	        <h1 class="display-5">Login</h1>
-	        <form th:action="@{/loginprocess}" method="post">
-		      	<input type="text" name="username" id="username" placeholder="Username" />
-		      	<input type="password" name="password" id="password" placeholder="Password" />
-		      	<input type="submit" />
-	      	</form>
-	      	<div th:if="${error != null}" class="alert alert-danger">
-		    	Invalid username or password.
-		    </div>
-	      </div>
-	    </div>
-	    <!-- Bootstrap core JavaScript -->
-	    <script src="/vendor/jquery/jquery.min.js"></script>
-	    <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-	</body>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - UNLA TFI</title>
+    <link rel="stylesheet" th:href="@{/vendor/bootstrap/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" th:href="@{/css/modern-business.css}"/>
+</head>
+<body class="bg-light">
+
+    <div class="login-container">
+        <div class="card login-card">
+            <div class="card-body">
+                <div class="login-header">
+                    <h3>UNLA TFI</h3>
+                    <p class="text-muted">Inicie sesion para continuar</p>
+                </div>
+
+                <div th:if="${error != null}" class="alert alert-danger">
+                    Usuario o contrasena invalidos.
+                </div>
+
+                <div th:if="${logout != null}" class="alert alert-success">
+                    Cesion finalizada correctamente.
+                </div>
+
+                <form th:action="@{/loginprocess}" method="post">
+                    <div class="mb-3">
+                        <label for="username" class="form-label">Usuario</label>
+                        <input type="text" class="form-control" id="username" name="username" required autofocus placeholder="Ingrese su usuario"/>
+                    </div>
+                    <div class="mb-3">
+                        <label for="password" class="form-label">Contrasena</label>
+                        <input type="password" class="form-control" id="password" name="password" required placeholder="Ingrese su contrasena"/>
+                    </div>
+                    <button type="submit" class="btn btn-primary w-100">Ingresar</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script th:src="@{/vendor/jquery/jquery.min.js}"></script>
+    <script th:src="@{/vendor/bootstrap/js/bootstrap.bundle.min.js}"></script>
+</body>
 </html>

@@ -1,3 +1,21 @@
-<p>
-	Hello <span th:text="${name}" />
-</p>
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{layout :: head}"></head>
+<body>
+    <nav th:replace="~{layout :: navbar}"></nav>
+
+    <main class="container py-4">
+        <div class="page-header">
+            <h2>Hola, <span th:text="${name}">Usuario</span></h2>
+        </div>
+        <div class="card">
+            <div class="card-body">
+                <p>Bienvenido al sistema de gestion del TFI.</p>
+            </div>
+        </div>
+    </main>
+
+    <footer th:replace="~{layout :: footer}"></footer>
+    <div th:replace="~{layout :: scripts}"></div>
+</body>
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head th:fragment="head">
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>UNLA TFI</title>
+    <link rel="stylesheet" th:href="@{/vendor/bootstrap/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" th:href="@{/css/modern-business.css}"/>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" th:fragment="navbar">
+        <div class="container">
+            <a class="navbar-brand" th:href="@{/index}">UNLA TFI</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/index}">Inicio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/person}">Personas</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/degrees/}">Titulos</a>
+                    </li>
+                </ul>
+                <ul class="navbar-nav">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown">
+                            <span th:text="${username != null ? username : 'Usuario'}">Usuario</span>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right">
+                            <form th:action="@{/logout}" method="post">
+                                <button type="submit" class="dropdown-item">Cerrar sesion</button>
+                            </form>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-4" th:fragment="footer">
+        <div class="container text-center">
+            <p class="mb-0">&copy; 2026 UNLA - Trabajo Final Integrador</p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <div th:fragment="scripts">
+        <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    </div>
+
+</body>
+</html>

@@ -1,12 +1,38 @@
-<form action="#" th:action="@{/person/update}" th:object="${person}"
-	method="post">
-	<input type="hidden" th:field="*{id}" />
-	</p>
-	<p>
-		Name: <input type="text" th:field="*{name}" />
-	</p>
-	<input type="submit" value="Edit" />
-</form>
-<form action="#" th:action="@{/person/delete/{id}(id=${person.id})}" method="post">
-	<input type="submit" value="delete person" />
-</form>
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{layout :: head}"></head>
+<body>
+    <nav th:replace="~{layout :: navbar}"></nav>
+
+    <main class="container py-4">
+        <div class="page-header">
+            <h2>Editar Persona</h2>
+        </div>
+
+        <div class="card form-card">
+            <div class="card-body">
+                <form th:action="@{/person/update}" th:object="${person}" method="post">
+                    <input type="hidden" th:field="*{id}"/>
+                    <div class="mb-3">
+                        <label for="name" class="col-form-label">Nombre</label>
+                        <input type="text" class="form-control" id="name" th:field="*{name}" required/>
+                    </div>
+                    <div class="d-flex">
+                        <button type="submit" class="btn btn-primary mr-2">Guardar</button>
+                        <a th:href="@{/person}" class="btn btn-outline-secondary">Cancelar</a>
+                    </div>
+                </form>
+
+                <hr class="my-4"/>
+
+                <form th:action="@{/person/delete/{id}(id=${person.id})}" method="post" onsubmit="return confirm('Estas seguro de eliminar esta persona?')">
+                    <button type="submit" class="btn btn-danger">Eliminar persona</button>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <footer th:replace="~{layout :: footer}"></footer>
+    <div th:replace="~{layout :: scripts}"></div>
+</body>
+</html>

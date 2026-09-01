@@ -1,17 +1,48 @@
-<table border="1px">
-	<thead>
-		<tr>
-			<th>Name</th>
-			<th>View</th>
-		</tr>
-	</thead>
-	<tbody>
-		<tr th:each="person : ${persons}">
-			<td><span th:text="${person.name}" /></td>
-			<td>
-				<a th:href="@{/person/{id}(id=${person.id})}">View</a>
-			</td>
-		</tr>
-	</tbody>
-</table>
-<a href="/person/new">Create new person</a>
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{layout :: head}"></head>
+<body>
+    <nav th:replace="~{layout :: navbar}"></nav>
+
+    <main class="container py-4">
+        <div class="page-header d-flex justify-content-between align-items-center">
+            <h2>Personas</h2>
+            <a th:href="@{/person/new}" class="btn btn-success">+ Nueva Persona</a>
+        </div>
+
+        <div class="card">
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-striped table-hover mb-0">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Nombre</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr th:each="person : ${persons}">
+                                <td th:text="${person.id}"></td>
+                                <td th:text="${person.name}"></td>
+                                <td class="action-buttons">
+                                    <a th:href="@{/person/{id}(id=${person.id})}" class="btn btn-sm btn-outline-primary">Editar</a>
+                                    <form th:action="@{/person/delete/{id}(id=${person.id})}" method="post" class="d-inline" onsubmit="return confirm('Estas seguro de eliminar esta persona?')">
+                                        <button type="submit" class="btn btn-sm btn-outline-danger">Eliminar</button>
+                                    </form>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div th:if="${persons == null or persons.isEmpty()}" class="text-center text-muted py-4">
+                    No hay personas registradas.
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer th:replace="~{layout :: footer}"></footer>
+    <div th:replace="~{layout :: scripts}"></div>
+</body>
+</html>

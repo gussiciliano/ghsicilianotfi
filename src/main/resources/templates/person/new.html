@@ -1,5 +1,35 @@
-<form action="#" th:action="@{/person/create}" th:object="${person}" method="post">
-	<p>Name: <input type="text" th:field="*{name}" /></p>
-	<p>Birthdate: <input type="date" th:field="*{birthdate}" /></p>
-	<input type="submit" value="crear"/>
-</form>
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{layout :: head}"></head>
+<body>
+    <nav th:replace="~{layout :: navbar}"></nav>
+
+    <main class="container py-4">
+        <div class="page-header">
+            <h2>Nueva Persona</h2>
+        </div>
+
+        <div class="card form-card">
+            <div class="card-body">
+                <form th:action="@{/person/create}" th:object="${person}" method="post">
+                    <div class="mb-3">
+                        <label for="name" class="col-form-label">Nombre</label>
+                        <input type="text" class="form-control" id="name" th:field="*{name}" required placeholder="Ingrese el nombre"/>
+                    </div>
+                    <div class="mb-3">
+                        <label for="birthdate" class="col-form-label">Fecha de nacimiento</label>
+                        <input type="date" class="form-control" id="birthdate" th:field="*{birthdate}"/>
+                    </div>
+                    <div class="d-flex">
+                        <button type="submit" class="btn btn-success mr-2">Crear</button>
+                        <a th:href="@{/person}" class="btn btn-outline-secondary">Cancelar</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <footer th:replace="~{layout :: footer}"></footer>
+    <div th:replace="~{layout :: scripts}"></div>
+</body>
+</html>

@@ -41,7 +41,7 @@ public class HomeController {
 
 	//GET Example: SERVER/hello?name=someName
 	@GetMapping("/hello")
-	public ModelAndView helloParams1(@RequestParam(name="name", required=false, defaultValue="null") String name) {
+	public ModelAndView helloParams1(@RequestParam(required=false, defaultValue="null") String name) {
 		ModelAndView mV = new ModelAndView(ViewRouteHelper.HELLO);
 		mV.addObject("name", name);
 		return mV;
@@ -49,7 +49,7 @@ public class HomeController {
 
 	//GET Example: SERVER/hello/someName
 	@GetMapping("/hello/{name}")
-	public ModelAndView helloParams2(@PathVariable("name") String name) {
+	public ModelAndView helloParams2(@PathVariable String name) {
 		ModelAndView mV = new ModelAndView(ViewRouteHelper.HELLO);
 		mV.addObject("name", name);
 		return mV;
