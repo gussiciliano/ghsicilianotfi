@@ -25,4 +25,9 @@ public class ViewRouteHelper {
 	public final static String ROUTE = "/index";
 	public final static String DEGREE_ROOT = "/degrees/";
 	public final static String PERSON_ROOT = "/person";
+	
+	//Prestamos
+	public final static String PRESTAMO_INDEX = "prestamo/index";
+	public final static String PRESTAMO_MIS_PRESTAMOS = "prestamo/mis_prestamos";
+	public final static String REDIRECT_PRESTAMO_MIS_PRESTAMOS = "misprestamos";
 }
